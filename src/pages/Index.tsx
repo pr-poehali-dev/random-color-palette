@@ -89,28 +89,28 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-background via-background to-secondary/20">
-      <div className="w-full max-w-md space-y-8">
-        <div className="text-center space-y-2 animate-fade-in">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground">
-            Палитра
-          </h1>
-          <p className="text-muted-foreground text-sm">
-            Гармоничные цвета для вашего дизайна
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-secondary/20">
+      <div className="flex-1 flex items-center justify-center p-6 pb-32">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center space-y-2 animate-fade-in">
+            <h1 className="text-4xl font-semibold tracking-tight text-foreground">
+              Палитра
+            </h1>
+            <p className="text-muted-foreground text-sm">
+              Гармоничные цвета для вашего дизайна
+            </p>
+          </div>
 
-        <div className="space-y-4">
-          {colors.map((color, index) => (
-            <div
-              key={`${color.hex}-${index}`}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer animate-color-shift"
-              style={{ 
-                backgroundColor: color.hex,
-                animationDelay: `${index * 100}ms`
-              }}
-              onClick={() => handleCopyColor(color.hex)}
-            >
+          <div className="space-y-4">
+            {colors.map((color, index) => (
+              <div
+                key={`${color.hex}-${index}`}
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                style={{ 
+                  backgroundColor: color.hex
+                }}
+                onClick={() => handleCopyColor(color.hex)}
+              >
               <div className="h-32 flex items-center justify-center relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -147,18 +147,23 @@ const Index = () => {
           ))}
         </div>
 
-        <Button
-          onClick={handleGenerate}
-          size="lg"
-          className="w-full h-14 text-base font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-        >
-          <Icon name="RefreshCw" size={20} className="mr-2" />
-          Новая палитра
-        </Button>
+          <p className="text-center text-xs text-muted-foreground pt-4">
+            Нажмите на цвет чтобы скопировать HEX-код
+          </p>
+        </div>
+      </div>
 
-        <p className="text-center text-xs text-muted-foreground">
-          Нажмите на цвет чтобы скопировать HEX-код
-        </p>
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background to-transparent">
+        <div className="w-full max-w-md mx-auto">
+          <Button
+            onClick={handleGenerate}
+            size="lg"
+            className="w-full h-14 text-base font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Icon name="RefreshCw" size={20} className="mr-2" />
+            Новая палитра
+          </Button>
+        </div>
       </div>
     </div>
   );
